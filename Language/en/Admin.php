@@ -9,5 +9,9 @@
  */
 
 return [
-   'home-title' => 'Home',
+	'home-title' => 'Home',
+
+	// menu
+	'menu-labelInformation'   => 'Informations',
+	'menu-generalInformation' => 'General informations',
 ];
