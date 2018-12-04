@@ -1,0 +1,16 @@
+{
+    "name": "bvrignaud/admin",
+    "description": "Admin module for CodeIgniter 4 based on IonAuth and AdminLTE",
+    "type": "library",
+    "require-dev": {
+        "codeigniter4/codeigniter4-standard": "^1.0"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Benoit VRIGNAUD",
+            "email": "benoit.vrignaud@zaclys.net"
+        }
+    ],
+    "require": {}
+}
