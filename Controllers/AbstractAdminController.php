@@ -47,7 +47,7 @@ abstract class AbstractAdminController extends Controller
 		'informations' => [
 			'label' => 'Admin.menu-labelInformation',
 			'title' => 'Admin.menu-generalInformation',
-			'url'   => 'admin/accueil/informations',
+			'url'   => 'admin/informations',
 			'icon'  => 'info-circle',
 		],
 	];
@@ -86,9 +86,9 @@ abstract class AbstractAdminController extends Controller
 	 * @param string $activeMenu Active menu
 	 * @param array  $data       Tableau de paramètres
 	 *
-	 * @return void
+	 * @return string
 	 */
-	protected function view(string $name, string $pageTitle = '', string $activeMenu = '', array $data = []): void
+	protected function view(string $name, string $pageTitle = '', string $activeMenu = '', array $data = []): string
 	{
 		$mainData = [
 			'appName'       => env('appName', 'CI-Admin'),
@@ -98,7 +98,7 @@ abstract class AbstractAdminController extends Controller
 			'leftMenu'      => $this->displayLeftMenu($this->leftMenu, $activeMenu),
 			'body'          => view("Admin\\$name", $data),
 		];
-		echo view('Admin\main', $mainData);
+		return view('Admin\main', $mainData);
 	}
 
 	/**

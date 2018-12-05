@@ -22,6 +22,6 @@ class Home extends AbstractAdminController
 		{
 			return redirect()->to('/');
 		}
-		$this->view('home', lang('Admin.home-title'));
+		return $this->view('home', lang('Admin.home-title'));
 	}
 }
