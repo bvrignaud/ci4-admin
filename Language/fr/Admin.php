@@ -9,9 +9,20 @@
  */
 
 return [
-	'home-title' => 'Accueil',
+	'home-title'         => 'Accueil',
+	'informations-title' => 'Informations',
 
 	// menu
 	'menu-labelInformation'   => 'Informations',
 	'menu-generalInformation' => 'Informations générales',
+
+	// Generic
+	'yes' => 'oui',
+	'no'  => 'non',
+
+	// Informations pages
+	'display_phpinfo'   => 'Afficher le phpinfo',
+	'download_database' => 'Sauvegarder la base de données',
+	'email_params'      => 'Paramètres e-mail',
+	'send_test_email'   => 'Envoyer un email de test',
 ];
