@@ -31,8 +31,9 @@ class Informations extends AbstractAdminController
 			'dbVersion' => \Config\Database::connect()->getVersion(),
 			'ciVersion' => \CodeIgniter\CodeIgniter::CI_VERSION,
 		];
+		$body = view ('Admin\informations', $data);
 
-		return $this->view('informations', lang('Admin.informations-title'), 'informations', $data);
+		return $this->view($body, lang('Admin.informations-title'), 'informations');
 	}
 
 	/**
@@ -51,7 +52,7 @@ class Informations extends AbstractAdminController
 	}
 
 	/**
-	 * Download databse
+	 * Download database
 	 *
 	 * @return \CodeIgniter\HTTP\RedirectResponse|string
 	 */
@@ -85,12 +86,13 @@ class Informations extends AbstractAdminController
 	 */
 	public function sendEmailForTest()
 	{
-		if (isset($_POST['testemail']))
+
+		if (isset($_POST['email']))
 		{
 			$email = \Config\Services::email();
 			//$email->setFrom($this->config->item('contact_email'));
 			$email->setFrom('test@free.fr');
-			$email->setTo($this->request->getPost('testemail'));
+			$email->setTo($this->request->getPost('email'));
 			$email->setSubject('Test');
 			$email->setMessage('Test d\'envoi de mail.');
 

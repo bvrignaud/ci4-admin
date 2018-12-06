@@ -35,7 +35,7 @@ abstract class AbstractAdminController extends Controller
 		'users' => [
 			'label' => 'Utilisateurs',
 			'title' => 'Utilisateurs',
-			'url'   => 'admin/tables/users',
+			'url'   => 'admin/users',
 			'icon'  => 'user',
 		],
 		'groupes' => [
@@ -79,16 +79,15 @@ abstract class AbstractAdminController extends Controller
 	}
 
 	/**
-	 * Affiche la page souhaitée ainsi que les headers
+	 * Display the $body page inside the main vue
 	 *
-	 * @param string $name       Vue name
+	 * @param string $body       Body vue
 	 * @param string $pageTitle  Page title
 	 * @param string $activeMenu Active menu
-	 * @param array  $data       Tableau de paramètres
 	 *
 	 * @return string
 	 */
-	protected function view(string $name, string $pageTitle = '', string $activeMenu = '', array $data = []): string
+	protected function view(string $body, string $pageTitle = '', string $activeMenu = ''): string
 	{
 		$mainData = [
 			'appName'       => env('appName', 'CI-Admin'),
@@ -96,7 +95,7 @@ abstract class AbstractAdminController extends Controller
 			'userLastName'  => $this->user->last_name,
 			'pageTitle'     => $pageTitle,
 			'leftMenu'      => $this->displayLeftMenu($this->leftMenu, $activeMenu),
-			'body'          => view("Admin\\$name", $data),
+			'body'          => $body,
 		];
 		return view('Admin\main', $mainData);
 	}
