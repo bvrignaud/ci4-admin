@@ -57,7 +57,7 @@ function displayModules(array $modules): string
 		</div>
 		<div class="card-body">
 		<p class="card-text">Seveur MySQL : <?=$dbVersion?></p>
-		<a href="<?=site_url('admin/informations/exportDatabase')?>" download class="btn btn-primary" role="button">
+		<a href="<?=site_url('admin/informations/exportDatabase')?>" download class="btn btn-primary disabled" role="button">
 			<?= lang('Admin.download_database') ?>
 		</a>
 		</div>
@@ -69,12 +69,12 @@ function displayModules(array $modules): string
 			<?=form_open('admin/informations/sendEmailForTest', ['id' => 'formSendMail'])?>
 				<div class="form-group">
 					<label>E-mail</label>
-					<input name="testemail" class="form-control" value="" required type="email">
+					<input name="email" id="email" class="form-control" value="" required type="email">
 				</div>
 
 				<div class="form-group no-border">
-					<input name="send" class="btn btn-primary disabled" value="<?= lang('Admin.send_test_email') ?>"
-							type="submit">
+					<input name="send" class="btn btn-primary" value="<?= lang('Admin.send_test_email') ?>"
+						   type="submit">
 				</div>
 			<?=form_close()?>
 			<div id="logEmailErrors" class="alert alert-danger" role="alert" style="display: none">
@@ -86,7 +86,7 @@ function displayModules(array $modules): string
 
 <script>
 document.addEventListener("DOMContentLoaded", function(event) {
-	/*
+/*
 	$('#formSendMail').submit(function(evt) {
 		evt.preventDefault();
 		$.ajax({
@@ -95,6 +95,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 			data: $(this).serialize(),
 			dataType : "json",
 		}).done(function (reponse) {
+			console.log(reponse);
 			if(reponse.success === true) {
 				displaySuccessMessage(reponse.msg);
 				$('#logEmailErrors').hide();
@@ -109,9 +110,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		});
 	});
 	*/
+
+
+
 	$('#formSendMail').submit(function(evt) {
-		let formData = new FormData();
-		formData.append('testemail', email);
+		evt.preventDefault();
+		console.log(evt);
+		let formData = new FormData(document.getElementById('formSendMail'));
+		//formData.append('email', email);
 		let params = {
 			method: 'POST',
 			body: formData
@@ -130,7 +136,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 			swal.showValidationMessage(
 				`Erreur : ${error}`
 			);
-			*/
+	*/
 			alert(`Erreur : ${error}`);
 		})
 	});
