@@ -13,6 +13,7 @@ return [
 	'informations-title' => 'Informations',
 
 	// menu
+	'menu-users'              => 'Users',
 	'menu-labelInformation'   => 'Informations',
 	'menu-generalInformation' => 'General informations',
 

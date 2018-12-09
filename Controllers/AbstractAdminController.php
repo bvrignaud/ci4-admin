@@ -33,8 +33,8 @@ abstract class AbstractAdminController extends Controller
 			'icon'  => 'dashboard',
 		],
 		'users'        => [
-			'label' => 'Utilisateurs',
-			'title' => 'Utilisateurs',
+			'label' => 'Admin.menu-users',
+			'title' => 'Admin.menu-users',
 			'url'   => 'admin/users',
 			'icon'  => 'user',
 		],
