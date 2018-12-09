@@ -75,7 +75,7 @@ abstract class AbstractAdminController extends Controller
 	 */
 	protected function isAuthorized(): bool
 	{
-		return $this->ionAuth->loggedIn() && $this->ionAuth->inGroup('admin');
+		return $this->ionAuth->loggedIn() && $this->ionAuth->isAdmin();
 	}
 
 	/**
