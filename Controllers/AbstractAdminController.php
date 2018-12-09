@@ -26,23 +26,17 @@ abstract class AbstractAdminController extends Controller
 	 * @var array
 	 */
 	protected $leftMenu = [
-		'dashboard' => [
+		'dashboard'    => [
 			'label' => 'Dashboard',
 			'title' => 'Dashboard',
 			'url'   => 'admin',
 			'icon'  => 'dashboard',
 		],
-		'users' => [
+		'users'        => [
 			'label' => 'Utilisateurs',
 			'title' => 'Utilisateurs',
 			'url'   => 'admin/users',
 			'icon'  => 'user',
-		],
-		'groupes' => [
-			'label' => 'Groupes',
-			'title' => 'Groupes',
-			'url'   => 'admin/tables/Groupes',
-			'icon'  => 'users',
 		],
 		'informations' => [
 			'label' => 'Admin.menu-labelInformation',
@@ -114,7 +108,7 @@ abstract class AbstractAdminController extends Controller
 		foreach ($menus as $keyMenu => $menu)
 		{
 			$active = $activeMenu === $keyMenu ? ' active' : '';
-			$html .= '<li class="nav-item"'. (empty($menu['title']) ? '': ' title="' . lang($menu['title']) . '"') . '>';
+			$html  .= '<li class="nav-item"' . (empty($menu['title']) ? '' : ' title="' . lang($menu['title']) . '"') . '>';
 			if (empty($menu['sous-menu']))
 			{
 				$html .= '<a class="nav-link ' . $active . '" href="' . site_url($menu['url']) . '">';
