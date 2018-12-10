@@ -11,7 +11,7 @@ There are different ways to install this package.
 > 1. With composer
 
 ```shell
-$ composer require https://github.com/bvrignaud/ci-admin
+$ composer require bvrignaud/ci4-admin
 ```
 ---
 
