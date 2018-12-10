@@ -1,6 +1,7 @@
 {
-    "name": "bvrignaud/admin",
+    "name": "bvrignaud/ci4-admin",
     "description": "Admin module for CodeIgniter 4 based on IonAuth and AdminLTE",
+    "keywords": ["CodeIgniter 4", "AdminLTE 3"],
     "type": "library",
     "require-dev": {
         "codeigniter4/codeigniter4-standard": "^1.0"
@@ -12,5 +13,10 @@
             "email": "benoit.vrignaud@zaclys.net"
         }
     ],
-    "require": {}
+    "require": {},
+    "autoload": {
+		"psr-4" : {
+			"Admin\\Controllers\\" : "Controllers/"
+		}
+	}
 }
