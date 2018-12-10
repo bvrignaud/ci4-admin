@@ -18,11 +18,12 @@ $ composer require bvrignaud/ci4-admin
 > 2. With Git:
 
 ```shell
-my-project$ git clone https://github.com/bvrignaud/ci-admin.git
+my-project$ git clone https://github.com/bvrignaud/ci4-admin.git
 ```
 Then in your Config/Autoload.php, add this :
 ```php
-'Admin' => ROOTPATH . 'ci-admin',
+'IonAuth' => ROOTPATH . 'YOUR-ION_AUTH-FOLDER',
+'Admin'   => ROOTPATH . 'ci4-admin',
 ```
 
 ---
@@ -39,6 +40,7 @@ CI                          # → Root Directory
 Then in your Config/Autoload.php, add this :
 ```php
 'IonAuth' => ROOTPATH . 'YOUR-ION_AUTH-FOLDER',
+'Admin'   => ROOTPATH . 'ci4-admin',
 ```
 
 ---
