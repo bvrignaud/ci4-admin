@@ -1,5 +1,5 @@
-# ci-admin
-Admin module for CodeIgniter 4
+# ci4-admin
+Admin module for CodeIgniter 4 based on AdminLTE 3
 
 ## Installing ci-admin
 
