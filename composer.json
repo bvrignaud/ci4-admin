@@ -16,8 +16,7 @@
     "require": {},
     "autoload": {
 		"psr-4" : {
-            "Admin\\Controllers\\" : "Controllers/",
-            "Admin\\Views\\" : "Views/"
+            "Admin" : "/"
 		}
 	}
 }
