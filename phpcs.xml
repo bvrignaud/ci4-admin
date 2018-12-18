@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rulset name="CodeIgniter 4 Admin">
+	<description>CI 4 Admin coding style</description>
+
+	<config name="installed_paths" value="vendor/codeigniter4/codeigniter4-standard/CodeIgniter4"/>
+	<rule ref="CodeIgniter4"/>
+
+	<arg name="colors"/>
+	<arg value="p"/>
+
+	<file>src</file>
+</rulset>
