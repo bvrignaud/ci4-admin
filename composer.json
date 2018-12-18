@@ -14,7 +14,10 @@
             "email": "benoit.vrignaud@zaclys.net"
         }
     ],
-    "require": {},
+    "require": {
+        "php": ">=7.1",
+        "codeigniter4/framework": "^4@alpha"
+    },
     "autoload": {
 		"psr-4" : {
             "Admin\\" : "src"
