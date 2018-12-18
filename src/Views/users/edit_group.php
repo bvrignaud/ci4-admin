@@ -7,12 +7,12 @@
 
 	<p>
 		<?php echo form_label(lang('Auth.edit_group_name_label'), 'group_name');?> <br />
-		<?php echo form_input($group_name);?>
+		<?php echo form_input($groupName);?>
 	</p>
 
 	<p>
 		<?php echo form_label(lang('Auth.edit_group_desc_label'), 'description');?> <br />
-		<?php echo form_input($group_description);?>
+		<?php echo form_input($groupDescription);?>
 	</p>
 
 	<p><?php echo form_submit('submit', lang('Auth.edit_group_submit_btn'));?></p>

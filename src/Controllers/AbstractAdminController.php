@@ -11,6 +11,11 @@
 
 use CodeIgniter\Controller;
 
+/**
+ * Admin abstract controller
+ *
+ * @package CI4-Admin
+ */
 abstract class AbstractAdminController extends Controller
 {
 	/**
@@ -53,6 +58,11 @@ abstract class AbstractAdminController extends Controller
 	 */
 	protected $user;
 
+	/**
+	 * Constructor
+	 *
+	 * @return void
+	 */
 	public function __construct()
 	{
 		$this->ionAuth = new \IonAuth\Libraries\IonAuth();
@@ -108,11 +118,13 @@ abstract class AbstractAdminController extends Controller
 		foreach ($menus as $keyMenu => $menu)
 		{
 			$active = $activeMenu === $keyMenu ? ' active' : '';
-			$html  .= '<li class="nav-item"' . (empty($menu['title']) ? '' : ' title="' . lang($menu['title']) . '"') . '>';
+			$html  .= '<li class="nav-item"' . (empty($menu['title']) ?
+							'' : ' title="' . lang($menu['title']) . '"') . '>';
 			if (empty($menu['sous-menu']))
 			{
 				$html .= '<a class="nav-link ' . $active . '" href="' . site_url($menu['url']) . '">';
-				$html .= isset($menu['icon']) ? '<i class="nav-icon fa fa-' . $menu['icon'] . '" aria-hidden="true"></i> ' : '';
+				$html .= isset($menu['icon']) ?
+							'<i class="nav-icon fa fa-' . $menu['icon'] . '" aria-hidden="true"></i> ' : '';
 				$html .= '<p>' . lang($menu['label']) . '</p>';
 				$html .= '</a>';
 			}

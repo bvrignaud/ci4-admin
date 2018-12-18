@@ -7,16 +7,16 @@
 
 	<p>
 		<?php echo form_label(lang('Auth.create_user_fname_label'), 'first_name');?> <br />
-		<?php echo form_input($first_name);?>
+		<?php echo form_input($firstName);?>
 	</p>
 
 	<p>
 		<?php echo form_label(lang('Auth.create_user_lname_label'), 'last_name');?> <br />
-		<?php echo form_input($last_name);?>
+		<?php echo form_input($lastName);?>
 	</p>
 
 	<?php
-	if ($identity_column !== 'email')
+	if ($identityColumn !== 'email')
 	{
 		echo '<p>';
 		echo form_label(lang('Auth.create_user_identity_label'), 'identity');
@@ -49,7 +49,7 @@
 
 	<p>
 		<?php echo form_label(lang('Auth.create_user_password_confirm_label'), 'password_confirm');?> <br />
-		<?php echo form_input($password_confirm);?>
+		<?php echo form_input($passwordConfirm);?>
 	</p>
 
 

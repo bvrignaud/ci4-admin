@@ -7,7 +7,7 @@
 
 	<p>
 		<?php echo form_label(lang('Auth.create_group_name_label'), 'group_name');?> <br />
-		<?php echo form_input($group_name);?>
+		<?php echo form_input($groupName);?>
 	</p>
 
 	<p>

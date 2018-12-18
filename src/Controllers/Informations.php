@@ -9,6 +9,11 @@
  * @link    http://github.com/bbvrignaud/ci-admin
  */
 
+/**
+ * Admin/Informations controller
+ *
+ * @package CI4-Admin
+ */
 class Informations extends AbstractAdminController
 {
 	use \CodeIgniter\API\ResponseTrait;
@@ -82,11 +87,10 @@ class Informations extends AbstractAdminController
 	}
 
 	/**
-	 * Test si l'envoi d'e-mail est correctement configuré
+	 * Test if e-mail are correctly configured
 	 */
 	public function sendEmailForTest()
 	{
-
 		if (isset($_POST['email']))
 		{
 			$email = \Config\Services::email();

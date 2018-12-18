@@ -9,21 +9,21 @@
  */
 
 return [
-	'home-title'         => 'Home',
-	'informations-title' => 'Informations',
+   'home-title'              => 'Home',
+   'informations-title'      => 'Informations',
 
 	// menu
-	'menu-users'              => 'Users',
-	'menu-labelInformation'   => 'Informations',
-	'menu-generalInformation' => 'General informations',
+   'menu-users'              => 'Users',
+   'menu-labelInformation'   => 'Informations',
+   'menu-generalInformation' => 'General informations',
 
 	// Generic
-	'yes' => 'yes',
-	'no'  => 'no',
+   'yes'                     => 'yes',
+   'no'                      => 'no',
 
 	// Informations pages
-	'display_phpinfo'   => 'Show phpinfo',
-	'download_database' => 'Download database',
-	'email_params'      => 'E-mail parametres',
-	'send_test_email'   => 'Send test email',
+   'display_phpinfo'         => 'Show phpinfo',
+   'download_database'       => 'Download database',
+   'email_params'            => 'E-mail parametres',
+   'send_test_email'         => 'Send test email',
 ];

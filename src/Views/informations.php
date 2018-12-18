@@ -1,11 +1,19 @@
 <?php
-function displayModules(array $modules): string
+/**
+ * Display php modules
+ *
+ * @param array $modules Modules to tests
+ *
+ * @return string
+ */
+function display_modules(array $modules): string
 {
 	$html = '';
-	foreach ($modules as $module) {
+	foreach ($modules as $module)
+	{
 		$html .= '<li>';
 		$html .= $module . ' : ';
-		$class = in_array('mod_rewrite', apache_get_modules()) ? 'success' : 'error';
+		$class = in_array($module, apache_get_modules()) ? 'success' : 'error';
 		$html .= '<i class="fa fa-circle text-' . $class . '" aria-hidden="true"></i>';
 		$html .= '</li>';
 	}
@@ -35,9 +43,12 @@ function displayModules(array $modules): string
 		<h3>Modules</h3>
 		<ul>
 			<?php
-			if (function_exists('apache_get_modules')) {
-				echo displayModules(['mod_rewrite', 'mod_env']);
-			} else {
+			if (function_exists('apache_get_modules'))
+			{
+				echo display_modules(['mod_rewrite', 'mod_env']);
+			}
+			else
+			{
 				echo 'apache_get_modules inconnue';
 			}
 			?>
@@ -57,7 +68,8 @@ function displayModules(array $modules): string
 		</div>
 		<div class="card-body">
 		<p class="card-text">Seveur MySQL : <?=$dbVersion?></p>
-		<a href="<?=site_url('admin/informations/exportDatabase')?>" download class="btn btn-primary disabled" role="button">
+		<a href="<?=site_url('admin/informations/exportDatabase')?>"
+		   download class="btn btn-primary disabled" role="button">
 			<?= lang('Admin.download_database') ?>
 		</a>
 		</div>

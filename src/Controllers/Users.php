@@ -70,9 +70,9 @@ class Users extends AbstractAdminController
 
 		$data['title'] = lang('Auth.create_user_heading');
 
-		$tables                  = $this->configIonAuth->tables;
-		$identityColumn          = $this->configIonAuth->identity;
-		$data['identity_column'] = $identityColumn;
+		$tables                 = $this->configIonAuth->tables;
+		$identityColumn         = $this->configIonAuth->identity;
+		$data['identityColumn'] = $identityColumn;
 
 		// validate form input
 		$validation = \Config\Services::validation();
@@ -80,17 +80,28 @@ class Users extends AbstractAdminController
 		$validation->setRule('last_name', lang('Auth.create_user_validation_lname_label'), 'trim|required');
 		if ($identityColumn !== 'email')
 		{
-			$validation->setRule('identity', lang('Auth.create_user_validation_identity_label'), 'trim|required|is_unique[' . $tables['users'] . '.' . $identityColumn . ']');
-			$validation->setRule('email', lang('Auth.create_user_validation_email_label'), 'trim|required|valid_email');
+			$validation->setRule(
+				'identity',
+				lang('Auth.create_user_validation_identity_label'),
+				'trim|required|is_unique[' . $tables['users'] . '.' . $identityColumn . ']');
+			$validation->setRule(
+				'email', lang('Auth.create_user_validation_email_label'), 'trim|required|valid_email');
 		}
 		else
 		{
-			$validation->setRule('email', lang('Auth.create_user_validation_email_label'), 'trim|required|valid_email|is_unique[' . $tables['users'] . '.email]');
+			$validation->setRule(
+				'email',
+				lang('Auth.create_user_validation_email_label'),
+				'trim|required|valid_email|is_unique[' . $tables['users'] . '.email]');
 		}
 		$validation->setRule('phone', lang('Auth.create_user_validation_phone_label'), 'trim');
 		$validation->setRule('company', lang('Auth.create_user_validation_company_label'), 'trim');
-		$validation->setRule('password', lang('Auth.create_user_validation_password_label'), 'required|min_length[' . $this->configIonAuth->minPasswordLength . ']|matches[password_confirm]');
-		$validation->setRule('password_confirm', lang('Auth.create_user_validation_password_confirm_label'), 'required');
+		$validation->setRule(
+			'password',
+			lang('Auth.create_user_validation_password_label'),
+			'required|min_length[' . $this->configIonAuth->minPasswordLength . ']|matches[password_confirm]');
+		$validation->setRule(
+			'password_confirm', lang('Auth.create_user_validation_password_confirm_label'), 'required');
 
 		if ($this->request->getPost() && $validation->withRequest($this->request)->run())
 		{
@@ -105,7 +116,11 @@ class Users extends AbstractAdminController
 				'phone'      => $this->request->getPost('phone'),
 			];
 		}
-		if ($this->request->getPost() && $validation->withRequest($this->request)->run() && $this->ionAuth->register($identity, $password, $email, $additionalData))
+		if (
+			$this->request->getPost()
+			&& $validation->withRequest($this->request)->run()
+			&& $this->ionAuth->register($identity, $password, $email, $additionalData)
+		)
 		{
 			// check to see if we are creating the user
 			// redirect them back to the admin page
@@ -117,51 +132,53 @@ class Users extends AbstractAdminController
 			// display the create user form
 			helper(['form']);
 			// set the flash data error message if there is one
-			$data['message'] = $validation->getErrors() ? $validation->listErrors() : ($this->ionAuth->errors() ? $this->ionAuth->errors() : session()->getFlashdata('message'));
+			$data['message'] = $validation->getErrors() ?
+									$validation->listErrors() :
+									($this->ionAuth->errors() ? $this->ionAuth->errors() : session()->getFlashdata('message'));
 
-			$data['first_name'] = [
+			$data['firstName']       = [
 				'name'  => 'first_name',
 				'id'    => 'first_name',
 				'type'  => 'text',
 				'value' => set_value('first_name'),
 			];
-			$data['last_name'] = [
+			$data['lastName']        = [
 				'name'  => 'last_name',
 				'id'    => 'last_name',
 				'type'  => 'text',
 				'value' => set_value('last_name'),
 			];
-			$data['identity'] = [
+			$data['identity']        = [
 				'name'  => 'identity',
 				'id'    => 'identity',
 				'type'  => 'text',
 				'value' => set_value('identity'),
 			];
-			$data['email'] = [
+			$data['email']           = [
 				'name'  => 'email',
 				'id'    => 'email',
 				'type'  => 'email',
 				'value' => set_value('email'),
 			];
-			$data['company'] = [
+			$data['company']         = [
 				'name'  => 'company',
 				'id'    => 'company',
 				'type'  => 'text',
 				'value' => set_value('company'),
 			];
-			$data['phone'] = [
+			$data['phone']           = [
 				'name'  => 'phone',
 				'id'    => 'phone',
 				'type'  => 'text',
 				'value' => set_value('phone'),
 			];
-			$data['password'] = [
+			$data['password']        = [
 				'name'  => 'password',
 				'id'    => 'password',
 				'type'  => 'password',
 				'value' => set_value('password'),
 			];
-			$data['password_confirm'] = [
+			$data['passwordConfirm'] = [
 				'name'  => 'password_confirm',
 				'id'    => 'password_confirm',
 				'type'  => 'password',
@@ -182,7 +199,7 @@ class Users extends AbstractAdminController
 	 */
 	public function edit(int $id)
 	{
-		if (! $this->isAuthorized() && ! ($this->ionAuth->user()->row()->id == $id))
+		if (! $this->isAuthorized() && ! ((int)$this->ionAuth->user()->row()->id === $id))
 		{
 			return redirect()->to('/admin/users');
 		}
@@ -212,8 +229,14 @@ class Users extends AbstractAdminController
 			// update the password if it was posted
 			if ($this->request->getPost('password'))
 			{
-				$validation->setRule('password', lang('Auth.edit_user_validation_password_label'), 'required|min_length[' . $this->configIonAuth->minPasswordLength . ']|matches[password_confirm]');
-				$validation->setRule('password_confirm', lang('Auth.edit_user_validation_password_confirm_label'), 'required');
+				$validation->setRule(
+					'password',
+					lang('Auth.edit_user_validation_password_label'),
+					'required|min_length[' . $this->configIonAuth->minPasswordLength . ']|matches[password_confirm]');
+				$validation->setRule(
+					'password_confirm',
+					lang('Auth.edit_user_validation_password_confirm_label'),
+					'required');
 			}
 
 			if ($this->request->getPost() && $validation->withRequest($this->request)->run())
@@ -272,41 +295,41 @@ class Users extends AbstractAdminController
 		$data['groups']        = $groups;
 		$data['currentGroups'] = $currentGroups;
 
-		$data['first_name'] = [
+		$data['firstName']       = [
 			'name'  => 'first_name',
 			'id'    => 'first_name',
 			'type'  => 'text',
 			'value' => set_value('first_name', $user->first_name ?: ''),
 		];
-		$data['last_name'] = [
+		$data['lastName']        = [
 			'name'  => 'last_name',
 			'id'    => 'last_name',
 			'type'  => 'text',
 			'value' => set_value('last_name', $user->last_name ?: ''),
 		];
-		$data['company'] = [
+		$data['company']         = [
 			'name'  => 'company',
 			'id'    => 'company',
 			'type'  => 'text',
 			'value' => set_value('company', empty($user->company) ? '' : $user->company),
 		];
-		$data['phone'] = [
+		$data['phone']           = [
 			'name'  => 'phone',
 			'id'    => 'phone',
 			'type'  => 'text',
 			'value' => set_value('phone', empty($user->phone) ? '' : $user->phone),
 		];
-		$data['password'] = [
+		$data['password']        = [
 			'name' => 'password',
 			'id'   => 'password',
 			'type' => 'password',
 		];
-		$data['password_confirm'] = [
+		$data['passwordConfirm'] = [
 			'name' => 'password_confirm',
 			'id'   => 'password_confirm',
 			'type' => 'password',
 		];
-		$data['ionAuth'] = $this->ionAuth;
+		$data['ionAuth']         = $this->ionAuth;
 
 		$body = view('Admin\users\edit_user', $data);
 		return $this->view($body, lang('Auth.edit_user_heading'), 'users');
@@ -407,7 +430,10 @@ class Users extends AbstractAdminController
 		{
 			if ($validation->withRequest($this->request)->run())
 			{
-				$groupUpdate = $this->ionAuth->updateGroup($id, $this->request->getPost('group_name'), ['description' => $this->request->getPost('group_description')]);
+				$groupUpdate = $this->ionAuth->updateGroup(
+									$id,
+									$this->request->getPost('group_name'),
+									['description' => $this->request->getPost('group_description')]);
 
 				if ($groupUpdate)
 				{
@@ -431,14 +457,14 @@ class Users extends AbstractAdminController
 
 		$readonly = $this->configIonAuth->adminGroup === $group->name ? 'readonly' : '';
 
-		$data['group_name']        = [
+		$data['groupName']        = [
 			'name'    => 'group_name',
 			'id'      => 'group_name',
 			'type'    => 'text',
 			'value'   => set_value('group_name', $group->name),
 			$readonly => $readonly,
 		];
-		$data['group_description'] = [
+		$data['groupDescription'] = [
 			'name'  => 'group_description',
 			'id'    => 'group_description',
 			'type'  => 'text',
@@ -486,7 +512,7 @@ class Users extends AbstractAdminController
 			// set the flash data error message if there is one
 			$data['message'] = $validation->getErrors() ? $validation->listErrors() : ($this->ionAuth->errors() ? $this->ionAuth->errors() : session()->getFlashdata('message'));
 
-			$data['group_name'] = [
+			$data['groupName']   = [
 				'name'  => 'group_name',
 				'id'    => 'group_name',
 				'type'  => 'text',
