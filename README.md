@@ -1,4 +1,5 @@
 # ci4-admin
+[![Build Status](https://travis-ci.com/bvrignaud/ci4-admin.svg?branch=master)](https://travis-ci.com/bvrignaud/ci4-admin)
 Admin module for CodeIgniter 4 based on AdminLTE 3
 
 ## Installing ci-admin
